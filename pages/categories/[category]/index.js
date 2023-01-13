@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Layout from "../../../components/layout";
 
 const ROUTE_PROD_ID = "/categories/[category]/[product]/";
 const Categories = () => {
@@ -35,44 +36,46 @@ const Categories = () => {
     },
   ];
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1 style={{ textDecoration: "underline" }}>Categories</h1>
-      {items.map((item) => {
-        return (
-          <div key={item.id}>
-            {item.name === category && (
-              <div>
-                <h1 style={{ paddingTop: "3em" }}>
-                  Category Name: {item.name}
-                </h1>
-                <h2 style={{ marginTop: "12px", marginBottom: "15px" }}>
-                  Product List
-                </h2>
-                {item.content.map((product) => {
-                  return (
-                    <ul key={`product-${product.id}`}>
-                      <li>
-                        <Link
-                          href={{
-                            pathname: ROUTE_PROD_ID,
-                            query: {
-                              category: category,
-                              product: product.name,
-                            },
-                          }}
-                        >
-                          {product.id}. {product.name}
-                        </Link>
-                      </li>
-                    </ul>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+    <Layout>
+      <div style={{ textAlign: "center" }}>
+        <h1 style={{ textDecoration: "underline" }}>Categories</h1>
+        {items.map((item) => {
+          return (
+            <div key={item.id}>
+              {item.name === category && (
+                <div>
+                  <h1 style={{ paddingTop: "3em" }}>
+                    Category Name: {item.name}
+                  </h1>
+                  <h2 style={{ marginTop: "12px", marginBottom: "15px" }}>
+                    Product List
+                  </h2>
+                  {item.content.map((product) => {
+                    return (
+                      <ul key={`product-${product.id}`}>
+                        <li>
+                          <Link
+                            href={{
+                              pathname: ROUTE_PROD_ID,
+                              query: {
+                                category: category,
+                                product: product.name,
+                              },
+                            }}
+                          >
+                            {product.id}. {product.name}
+                          </Link>
+                        </li>
+                      </ul>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </Layout>
   );
 };
 

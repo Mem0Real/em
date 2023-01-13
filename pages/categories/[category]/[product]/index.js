@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Layout from "../../../../components/layout";
 
 const Products = () => {
   const router = useRouter();
@@ -54,29 +55,31 @@ const Products = () => {
     },
   ];
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Category Name: {category}</h1>
-      <h1>Product Name: {product}</h1>
-      <br />
-      {products.map((prod) => {
-        return (
-          <div key={prod.id}>
-            {prod.name === product &&
-              prod.content.map((productContent) => {
-                return (
-                  <div
-                    key={`Current Product: ${productContent.id}`}
-                    style={{ marginTop: "5em" }}
-                  >
-                    <h2>{productContent.name}</h2>
-                    <h4>{productContent.detail}</h4>
-                  </div>
-                );
-              })}
-          </div>
-        );
-      })}
-    </div>
+    <Layout>
+      <div style={{ textAlign: "center" }}>
+        <h1>Category Name: {category}</h1>
+        <h1>Product Name: {product}</h1>
+        <br />
+        {products.map((prod) => {
+          return (
+            <div key={prod.id}>
+              {prod.name === product &&
+                prod.content.map((productContent) => {
+                  return (
+                    <div
+                      key={`Current Product: ${productContent.id}`}
+                      style={{ marginTop: "5em" }}
+                    >
+                      <h2>{productContent.name}</h2>
+                      <h4>{productContent.detail}</h4>
+                    </div>
+                  );
+                })}
+            </div>
+          );
+        })}
+      </div>
+    </Layout>
   );
 };
 

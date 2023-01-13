@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Layout from "../../components/layout";
 
 const ROUTE_CAT_ID = "/categories/[category]";
 const categories = [
@@ -19,6 +20,7 @@ const categories = [
 
 export default function Categories() {
   return (
+    <Layout>
     <div style={{ textAlign: "center", color: "white" }}>
       <h1>Here are our categories.</h1>
       {categories.map((category) => {
@@ -36,5 +38,6 @@ export default function Categories() {
         );
       })}
     </div>
+    </Layout>
   );
 }
